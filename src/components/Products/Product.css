@@ -1,0 +1,27 @@
+.product{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.products-detils{
+  margin-left: 50px;
+   
+}
+.product-name a{
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.cart-btn{
+    width: 180px;
+    height: 30px;
+    border:  .5px solid #131212;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    background-color: #F0C14B;
+}

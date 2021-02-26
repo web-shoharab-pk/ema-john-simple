@@ -1,0 +1,10 @@
+.cart-btn{
+    width: 180px;
+    height: 30px;
+    border:  .5px solid #131212;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    background-color: #F0C14B;
+}
