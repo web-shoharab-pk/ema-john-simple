@@ -1,12 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import './Review.css'
 import fakeData from '../../fakeData';
-import { getDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../utilities/databaseManager';
 import ReviewItem from '../ReviewItem/ReviewItem';
+import Cart from '../Cart/Cart';
+import orderedImage from '../../images/giphy.gif'
+// import { Link } from 'react-router-dom';
+
 
 const Review = () => {
     const [cart, setCart] = useState([]);
+    const [orderePlaced, setOrderPlaced] = useState(false)
  
-    useEffect(()=> {
+    const handleOrderNow = () => {
+        
+        setCart([])
+        console.log("Order Now Clicked", cart);
+        setOrderPlaced(true);
+        processOrder();
+      
+    }
+
+    const handleRemoveItem = (productKey) => {
+         
+        const newCart = cart.filter(pd => pd.key !== productKey);
+        setCart(newCart);
+        removeFromDatabaseCart(productKey)
+    }
+
+    useEffect(() => {
         const saveData = getDatabaseCart();
         const productKeys = Object.keys(saveData);
         const cartProducts = productKeys.map(key => {
@@ -16,14 +38,36 @@ const Review = () => {
         });
         setCart(cartProducts);
     }, [])
+    
+    let thankYou;
+    if (orderePlaced) {
+        thankYou = <img src={orderedImage} alt="Your Ordered Is Confirm"/>;
+    } 
+
     return (
-        <div>
-            <h3>Order items: {cart.length} </h3>
-           {
-               cart.map(item =>  <ReviewItem product={item} />)
-           }
-           
+        <div className="reviewItem">
+            <div className="review-item">
+                {
+                cart.map(item =>  
+                <ReviewItem
+                    key={item.key}
+                    handleRemoveItem={handleRemoveItem}
+                    product={item} />)
+                }
+                {
+                    thankYou
+                }
+            </div>
+            <div className="reviewSummary">
+                <Cart cart={cart} >
+                      <button  onClick={handleOrderNow} className="cart-btn">Order Now</button> 
+                </Cart>
+                 
+            </div>                   
         </div>
+              
+          
+           
     );
 };
 

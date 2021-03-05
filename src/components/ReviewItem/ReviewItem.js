@@ -1,10 +1,10 @@
 import React from 'react';
 
 const ReviewItem = (props) => {
-    const {name, seller, price, img, stock} = props.product;
-    console.log(props.product);
+    const { name, seller, price, img, stock, key, quantity } = props.product;
+
     return (
-<div className="product">
+        <div className="product">
             <div className="products-img">
                 <img src={img} alt="" />
             </div>
@@ -16,18 +16,17 @@ const ReviewItem = (props) => {
                         <p>by: {seller}</p>
                         <p>${price}</p>
                         <p>only {stock} left in stock - order soon</p>
-
-                      <button  className="cart-btn">Remove</button>
-                      <button className="cart-btn">Order now</button>
-
+                        <p>Quantity: {quantity}</p>
+                        <h4>Total price: {price*quantity}</h4>
+                        <button onClick={() => props.handleRemoveItem(key)} className="cart-btn">Remove</button>
                     </div>
-                    
+
                 </div>
             </div>
 
         </div>
     );
- 
+
 };
 
 export default ReviewItem;
