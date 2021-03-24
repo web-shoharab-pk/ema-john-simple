@@ -11,7 +11,9 @@ import { useHistory } from 'react-router';
 
 const Review = () => {
     const [cart, setCart] = useState([]);
-    const [orderePlaced] = useState(false)
+    const [orderePlaced, setOrderePlaced] = useState(false)
+    document.title = "review"
+
 
     const history = useHistory();
     const handleProseedCheckOut = () => {

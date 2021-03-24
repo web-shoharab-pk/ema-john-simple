@@ -6,8 +6,9 @@ import { UserContaxt } from '../../App';
 
 const Inventory = () => {
     const {  handleSubmit, watch, errors } = useForm();
-    const [loggedInUser, setLoggedInUser] = useContext(UserContaxt);
+    const [loggedInUser, setLoggedInUser ] = useContext(UserContaxt);
     const onSubmit = data => console.log(data);
+    document.title = "inventory"
   
     console.log(watch("example")); // watch input value by passing the name of it
   

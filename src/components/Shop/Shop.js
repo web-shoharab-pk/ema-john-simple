@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const first20 = fakeData.slice(0, 20);
-    const [products ] = useState(first20)
+    const [products, setProducts ] = useState(first20)
     const [cart, setCart] = useState([])
  
     useEffect(() => {
@@ -53,6 +53,9 @@ const Shop = () => {
     return (
         <div className="shop-container">
             <div className="product-container">
+                {
+                    products.length === 0 && <p>Loading..</p>
+                }
                     {
                         products.map(pd => <Product
                             key={pd.key}
